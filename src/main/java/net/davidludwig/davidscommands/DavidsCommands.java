@@ -1,10 +1,12 @@
 package net.davidludwig.davidscommands;
 
 import net.davidludwig.davidscommands.client.ClientProxy;
+import net.davidludwig.davidscommands.command.CommandDisplayRngChunks;
 import net.davidludwig.davidscommands.command.CommandUnloadPriority;
 import net.davidludwig.davidscommands.command.server.CommandCountEntities;
 import net.davidludwig.davidscommands.command.server.CommandInstantBlockFalling;
 import net.davidludwig.davidscommands.command.server.CommandRngReset;
+import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.ClientCommandHandler;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
@@ -30,16 +32,8 @@ public class DavidsCommands
     public static CommonProxy proxy;
 
     @EventHandler
-    public void onServerStart(FMLServerStartingEvent event) {
-        event.registerServerCommand(new CommandInstantBlockFalling());
-        event.registerServerCommand(new CommandCountEntities());
-        event.registerServerCommand(new CommandRngReset());
-    }
-
-    @SideOnly(Side.CLIENT)
-    @EventHandler
     public void init(FMLInitializationEvent event) {
-        ClientCommandHandler.instance.registerCommand(new CommandUnloadPriority());
         MinecraftForge.EVENT_BUS.register(proxy);
+        proxy.init(event);
     }
 }

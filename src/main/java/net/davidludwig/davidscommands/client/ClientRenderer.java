@@ -1,23 +1,27 @@
 package net.davidludwig.davidscommands.client;
 
 import net.davidludwig.davidscommands.render.ChunkPriorityRenderer;
+import net.davidludwig.davidscommands.render.RngChunkBorderRenderer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.RenderGlobal;
-import net.minecraft.client.renderer.debug.DebugRenderer;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.player.EntityPlayer;
 
 public class ClientRenderer {
 
     private ChunkPriorityRenderer chunkPriorityRenderer = new ChunkPriorityRenderer();
+    private RngChunkBorderRenderer rngChunkBorderRenderer = new RngChunkBorderRenderer();
     public boolean chunkPriorityEnabled = false;
+    public boolean rngChunkBorderEnabled = false;
 
     public void render(float partialTicks) {
 
         if (chunkPriorityEnabled)
             chunkPriorityRenderer.render(this, partialTicks);
+
+        if (rngChunkBorderEnabled)
+            rngChunkBorderRenderer.render(this, partialTicks);
     }
 
     public void drawText(String str, double x, double y, double z, float partialTicks, int color) {

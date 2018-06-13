@@ -2,24 +2,16 @@ package net.davidludwig.davidscommands.render;
 
 import net.davidludwig.davidscommands.client.ClientRenderer;
 import net.davidludwig.davidscommands.util.ChunkUtils;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.renderer.EntityRenderer;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.RenderGlobal;
-import net.minecraft.client.renderer.debug.DebugRenderer;
-import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.chunk.Chunk;
 
-public class ChunkPriorityRenderer {
+public class ChunkPriorityRenderer extends Renderer {
 
     public void render(ClientRenderer renderer, float partialTicks) {
-        EntityPlayer player = Minecraft.getMinecraft().player;
-        int renderDistance = Minecraft.getMinecraft().gameSettings.renderDistanceChunks;
+        EntityPlayer player = getMinecraft().player;
+        int renderDistance = getMinecraft().gameSettings.renderDistanceChunks;
         int x = MathHelper.floor(player.posX / 16.0D);
         int z = MathHelper.floor(player.posZ / 16.0D);
 
